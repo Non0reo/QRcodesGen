@@ -1,0 +1,18 @@
+@media print {
+    .buttonHeader {display: none;}
+    .textBox {display: none;}
+    .textBoxInfo {display: none;}
+}
+
+button#printer{
+    margin: 20px;
+    padding: 5px;
+}
+
+header{
+    display: flex;
+}
+
+.textBox{
+    margin-right: 10px;
+}
