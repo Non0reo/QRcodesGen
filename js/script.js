@@ -1,9 +1,11 @@
 let number = 60;
+let starNumber = 1;
+let qrFrameSize = 1;
 let prefix = "Box";
 let borderColor = "#dcdcdc";
 
 async function getData(prefix, i) {
-    const response = await fetch("https://chart.apis.google.com/chart?cht=qr&chs=85x85&chl=" + prefix + i);
+    const response = await fetch("https://chart.apis.google.com/chart?cht=qr&chld=L|" + qrFrameSize + "&chs=85x85&chl=" + prefix + i);
     const data = await response.blob();
 
     let div = document.createElement('div')
@@ -22,17 +24,22 @@ async function getData(prefix, i) {
   }
 
 function generate(){
-  if(document.getElementById("qrContainer1")){
-    for (let i = 0; i < number; i++) {
-      let div = document.getElementById("qrContainer" + (i + 1));
+  if(parseInt(document.getElementById("numberBox").value, 10) <
+   parseInt(document.getElementById("startNumberBox").value, 10)) return alert("Please enter corect values");
+
+  if(document.getElementById("qrContainer" + starNumber)){
+    for (let i = starNumber; i <= number; i++) {
+      let div = document.getElementById("qrContainer" + i);
       div.parentElement.removeChild(div);
     }
   }
 
-  number = document.getElementById("numberBox").value;
+  number = parseInt(document.getElementById("numberBox").value, 10);
+  starNumber = parseInt(document.getElementById("startNumberBox").value, 10);
+  qrFrameSize = parseInt(document.getElementById("qrFrameBox").value, 10);
   prefix = document.getElementById("prefixBox").value;
   borderColor = document.getElementById("colorBox").value;
-  for (let i = 0; i < number; i++) {
+  for (let i = starNumber - 1; i < number; i++) {
     getData(prefix, i + 1); 
   }
 }
