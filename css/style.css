@@ -4,7 +4,7 @@
     .textBoxInfo {display: none;}
 }
 
-button#printer{
+button#printer, button#generator{
     margin: 20px;
     padding: 5px;
 }

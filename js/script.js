@@ -27,6 +27,8 @@ function generate(){
   if(parseInt(document.getElementById("numberBox").value, 10) <
    parseInt(document.getElementById("startNumberBox").value, 10)) return alert("Please enter corect values");
 
+  document.getElementById("generator").disabled = true
+
   if(document.getElementById("qrContainer" + starNumber)){
     for (let i = starNumber; i <= number; i++) {
       let div = document.getElementById("qrContainer" + i);
@@ -42,6 +44,8 @@ function generate(){
   for (let i = starNumber - 1; i < number; i++) {
     getData(prefix, i + 1); 
   }
+
+  document.getElementById("generator").disabled = false
 }
 
 generate();
